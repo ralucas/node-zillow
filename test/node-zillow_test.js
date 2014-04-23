@@ -6,8 +6,8 @@ var Zillow = require('../lib/node-zillow.js'),
     sinon  = require('sinon');
 
 describe('Zillow', function() {
-    it('should return an object', function() {
+    it('should be an instanceof', function() {
         var zillow = new Zillow('xxx');
-        expect(zillow).to.be(typeof object);
+        expect(zillow instanceof Zillow).to.be(true);
     });
 });

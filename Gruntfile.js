@@ -21,11 +21,8 @@ module.exports = function (grunt) {
       },
       lib: {
         src: ['lib/**/*.js']
-      },
-      test: {
-        src: ['test/**/*.js']
       }
-    },
+   },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
