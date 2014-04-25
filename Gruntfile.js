@@ -9,7 +9,12 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
     mochaTest: {
-      src: ['test/**/*_test.js']
+      options: {
+          reporter: 'spec'
+      },
+      test: {
+        src: ['test/**/*_test.js']
+      }
     },
     jshint: {
       options: {
