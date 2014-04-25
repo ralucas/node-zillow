@@ -8,6 +8,7 @@ var Zillow = require('../lib/node-zillow.js'),
 console.log(typeof Zillow);    
 
 describe('Zillow', function() {
+    
     describe('constructor', function() {
         it('should be a function', function() {
             expect(typeof Zillow).to.equal('function');
