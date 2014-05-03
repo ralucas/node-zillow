@@ -1,10 +1,10 @@
 {
   "name": "node-zillow",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "lib/node-zillow.js",
   "description": "Node wrapper for the Zillow API",
   "homepage": "http://github.com/ralucas/node-zillow",
-  "bugs": "user/repo/issues",
+  "bugs": "http://github.com/ralucas/node-zillow/issues",
   "author": {
     "name": "Richard Lucas",
     "email": "richard@richardalucas.com",
@@ -19,9 +19,6 @@
       "type": "MIT"
     }
   ],
-  "files": [
-    ""
-  ],
   "keywords": [],
   "devDependencies": {
     "grunt-contrib-jshint": "~0.7.0",
@@ -34,7 +31,8 @@
     "chai": "^1.9.1",
     "sinon": "^1.9.1",
     "grunt-mocha": "^0.4.10",
-    "grunt-mocha-test": "^0.10.2"
+    "grunt-mocha-test": "^0.10.2",
+    "chai-as-promised": "^4.1.1"
   },
   "scripts": {
     "test": "grunt"
@@ -42,6 +40,7 @@
   "dependencies": {
     "request": "^2.34.0",
     "xml2js": "^0.4.2",
-    "q": "^1.0.1"
+    "q": "^1.0.1",
+    "lodash": "^2.4.1"
   }
 }
