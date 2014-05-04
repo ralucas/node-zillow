@@ -8,7 +8,6 @@ var Zillow         = require('../lib/node-zillow.js'),
     sinon          = require('sinon'),
     chaiAsPromised = require('chai-as-promised'),
     util           = require('util'),
-    Q              = require('q'),
     env            = require('../environment.json');
 
 // for chai promises
@@ -37,16 +36,20 @@ describe('Zillow', function() {
 describe('getDeepSearchResults', function() {
     var zillow = new Zillow(zwsid);
     var test = zillow.getDeepSearchResults(address, csz);
-    for(var i in test) {
-        console.log(i + ';' + test[i]);
-    }
-    console.log('type', typeof test.then);
-    it('should return json', function() {
-        return expect(typeof test).to.eventually.equal('object');     
+
+    it('should return a json object', function() {
+        return expect(typeof test.then(function(result) {
+            result.to.eventually.equal('object');
+        }));
     });
 
     it('should return a success message', function() {
-        expect(test['message']['text']).to.eventually.equal('Request successfully processed');
-        expect(test['message']['code']).to.eventually.equal(0);
+        expect(test.then(function(result) {
+            result['message']['text'].to.eventually.equal
+            ('Request successfully processed')
+        }));
+        expect(test.then(function(result) {
+            result['message']['code'].to.eventually.equal(0);
+        }));
     });
 });
