@@ -31,8 +31,7 @@
     "chai": "^1.9.1",
     "sinon": "^1.9.1",
     "grunt-mocha": "^0.4.10",
-    "grunt-mocha-test": "^0.10.2",
-    "chai-as-promised": "^4.1.1"
+    "grunt-mocha-test": "^0.10.2"
   },
   "scripts": {
     "test": "grunt"
@@ -40,7 +39,6 @@
   "dependencies": {
     "request": "^2.34.0",
     "xml2js": "^0.4.2",
-    "q": "^1.0.1",
-    "lodash": "^2.4.1"
+    "q": "^1.0.1"
   }
 }
