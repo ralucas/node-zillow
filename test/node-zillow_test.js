@@ -38,18 +38,18 @@ describe('getDeepSearchResults', function() {
     var test = zillow.getDeepSearchResults(address, csz);
 
     it('should return a json object', function() {
-        return expect(typeof test.then(function(result) {
-            result.to.eventually.equal('object');
+        expect(typeof test.then(function(result) {
+            result.to.equal('object');
         }));
     });
 
     it('should return a success message', function() {
         expect(test.then(function(result) {
-            result['message']['text'].to.eventually.equal
-            ('Request successfully processed')
+            result['message']['text'].to.equal
+            ('Request successfully processed');
         }));
         expect(test.then(function(result) {
-            result['message']['code'].to.eventually.equal(0);
+            result['message']['code'].to.equal(0);
         }));
     });
 });
