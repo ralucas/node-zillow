@@ -11,13 +11,12 @@ try {
   env = require('../testing.json');
 } catch (err) {
   env = {
-    "address": "3906 Cidermill Dr",
+    "address": "1600 Range St.",
     "city": "Boulder",
     "state": "Colorado",
     "zip": "80301"
   }
 }
-
 
 // test constants
 var zwsid = env.zwsid;

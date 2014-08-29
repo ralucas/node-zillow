@@ -15,8 +15,29 @@ var zillow = new Zillow('your zws-id');
 ## Documentation
 
 ### Methods
-`getDeepSearchResults`
-`getDemographics`
+
+```js
+getDeepSearchResults  
+- takes params hash
+{
+  address: 'address',
+  city: 'city',
+  state: 'state',
+  zip: 'zip',
+  rentzestimate: boolean //this is optional
+}
+```
+
+```js
+getDemographics
+- takes params hash
+{
+  address: 'address',
+  city: 'city',
+  state: 'state',
+  zip: 'zip'
+}
+```
 
 ## Examples
 _(Coming soon)_

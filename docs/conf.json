@@ -17,7 +17,7 @@
         "monospaceLinks": false
     },
     "opts": {
-        "template": "templates/default",
+        "template": "templates/jaguarjs-jsdoc",
         "encoding": "utf8",
         "destination": "./docs/"
     }

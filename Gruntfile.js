@@ -8,17 +8,39 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    bump: {
+      createTag: true,
+      push: true,
+      pushTo: 'master'
+    },
     mochaTest: {
-      options: {
-          reporter: 'spec'
-      },
       test: {
+        options: {
+          reporter: 'spec',
+          require: 'coverage/blanket'
+        },
         src: ['test/**/*_test.js']
+      },
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          captureFile: 'coverage.html'
+        }
+      }
+    },
+    jsdoc: {
+      dist: {
+        src: ['lib/*.js'], 
+        options: {
+          destination: 'docs',
+          configure: 'docs/conf.json'
+        }
       }
     },
     jshint: {
       options: {
         jshintrc: '.jshintrc',
+        force: true,
         reporter: require('jshint-stylish')
       },
       gruntfile: {
@@ -27,7 +49,7 @@ module.exports = function (grunt) {
       lib: {
         src: ['lib/**/*.js']
       }
-   },
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -45,6 +67,10 @@ module.exports = function (grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'mochaTest']);
+  grunt.registerTask('default', ['jshint', 'mochaTest', 'jsdoc']);
+
+  grunt.registerTask('test', 'mochaTest');
+
+  grunt.registerTask('docs', 'jsdoc');
 
 };
