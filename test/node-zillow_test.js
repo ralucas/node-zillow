@@ -5,6 +5,7 @@ var Zillow         = require('../lib/node-zillow.js'),
     chai           = require('chai'),
     expect         = require('chai').expect;
 
+
 describe('Zillow', function() {
 
     describe('constructor', function() {

@@ -13,7 +13,10 @@ var zillow = new Zillow('your zws-id');
 ```
 
 ## Documentation
-_(Coming soon)_
+
+### Methods
+`getDeepSearchResults`
+`getDemographics`
 
 ## Examples
 _(Coming soon)_

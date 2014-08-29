@@ -19,7 +19,10 @@
       "type": "MIT"
     }
   ],
-  "keywords": ["zillow", "node"],
+  "keywords": [
+    "zillow",
+    "node"
+  ],
   "devDependencies": {
     "grunt-contrib-jshint": "~0.7.0",
     "grunt-contrib-nodeunit": "~0.2.0",
@@ -37,8 +40,9 @@
     "test": "grunt"
   },
   "dependencies": {
+    "dotenv": "^0.4.0",
+    "q": "^1.0.1",
     "request": "^2.34.0",
-    "xml2js": "^0.4.2",
-    "q": "^1.0.1"
+    "xml2js": "^0.4.2"
   }
 }

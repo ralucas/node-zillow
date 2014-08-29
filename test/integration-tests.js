@@ -5,8 +5,19 @@ var Zillow         = require('../lib/node-zillow.js'),
     chai           = require('chai'),
     expect         = require('chai').expect,
     assert         = require('chai').assert,
-    sinon          = require('sinon'),
-    env            = require('../environment.json');
+    sinon          = require('sinon');
+
+try {
+  env = require('../testing.json');
+} catch (err) {
+  env = {
+    "address": "3906 Cidermill Dr",
+    "city": "Boulder",
+    "state": "Colorado",
+    "zip": "80301"
+  }
+}
+
 
 // test constants
 var zwsid = env.zwsid;
