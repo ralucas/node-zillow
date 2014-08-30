@@ -19,7 +19,7 @@ module.exports = function (grunt) {
           reporter: 'spec',
           require: 'coverage/blanket'
         },
-        src: ['test/**/*_test.js']
+        src: ['test/**/*_test.js', 'test/**/*-test.js']
       },
       coverage: {
         options: {
