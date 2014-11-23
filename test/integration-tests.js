@@ -7,10 +7,13 @@ var Zillow         = require('../lib/node-zillow.js'),
     assert         = require('chai').assert,
     sinon          = require('sinon');
 
+var dotenv = require('dotenv');
+dotenv.load();
+
 try {
-  env = require('../testing.json');
+  var params = require('../testing.json');
 } catch (err) {
-  env = {
+  params = {
     "address": "1600 Range St.",
     "city": "Boulder",
     "state": "Colorado",
@@ -19,13 +22,15 @@ try {
 }
 
 // test constants
-var zwsid = env.zwsid;
+var zwsid = process.env.ZWSID;
 
 describe('getDeepSearchResults', function() {
     var zillow = new Zillow(zwsid);
     var parameters = {
-        address: env.address,
-        citystatezip: env.citystatezip
+        address: params.address,
+        citystatezip: params.city,
+        state: params.state,
+        zip: params.zip
     };
     var test = zillow.getDeepSearchResults(parameters);
 
@@ -48,10 +53,10 @@ describe('getDeepSearchResults', function() {
 
 describe('getDemographics', function() {
     var zillow = new Zillow(zwsid);
-    var params = {
-        city: env.city,
-        state: env.state,
-        zip: env.zip
+    var parameters = {
+        city: params.city,
+        state: params.state,
+        zip: params.zip
     };
     var test = zillow.getDemographics(params);
 
