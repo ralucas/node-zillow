@@ -5,27 +5,31 @@ var Zillow         = require('../lib/node-zillow.js'),
     chai           = require('chai'),
     expect         = require('chai').expect,
     assert         = require('chai').assert,
-    sinon          = require('sinon');
+    sinon          = require('sinon'),
+    fake           = false,
+    params;
 
 try {
-  env = require('../testing.json');
+  params = require('../testing.json');
 } catch (err) {
-  env = {
-    "address": "1600 Range St.",
+  params = {
+    "address": "1619 Pine St.",
     "city": "Boulder",
     "state": "Colorado",
     "zip": "80301"
-  }
+  };
 }
 
 // test constants
-var zwsid = env.zwsid;
+var zwsid = process.env.ZWSID;
 
 describe('getDeepSearchResults', function() {
     var zillow = new Zillow(zwsid);
     var parameters = {
-        address: env.address,
-        citystatezip: env.citystatezip
+        address: params.address,
+        city: params.city,
+        state: params.state,
+        zip: params.zip
     };
     var test = zillow.getDeepSearchResults(parameters);
 
@@ -48,12 +52,12 @@ describe('getDeepSearchResults', function() {
 
 describe('getDemographics', function() {
     var zillow = new Zillow(zwsid);
-    var params = {
-        city: env.city,
-        state: env.state,
-        zip: env.zip
+    var parameters = {
+        city: params.city,
+        state: params.state,
+        zip: params.zip
     };
-    var test = zillow.getDemographics(params);
+    var test = zillow.getDemographics(parameters);
 
     it('should be a json object', function() {
         expect(typeof test.then(function(result) {
