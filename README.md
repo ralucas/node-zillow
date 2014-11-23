@@ -26,6 +26,7 @@ getDeepSearchResults
   zip: 'zip',
   rentzestimate: boolean //this is optional
 }
+- Returns a promise with the result
 ```
 
 ```js
@@ -37,10 +38,19 @@ getDemographics
   state: 'state',
   zip: 'zip'
 }
+- Returns a promise with the result
 ```
 
 ## Examples
-_(Coming soon)_
+
+```js
+Needs to be resolved from a promise (recommend Q library):
+
+var getResult = getDeepSearchResults({params});
+getResult.then(function(result) {
+  return result; //here's your result, so you can do something here
+});
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).

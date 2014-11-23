@@ -11,7 +11,7 @@ module.exports = function (grunt) {
     bump: {
       createTag: true,
       push: true,
-      pushTo: 'master'
+      pushTo: 'origin'
     },
     mochaTest: {
       test: {
