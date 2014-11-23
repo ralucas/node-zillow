@@ -3,3 +3,4 @@ npm-debug.log
 environment.json
 testing.json
 docs/
+.env
