@@ -33,19 +33,22 @@ describe('getDeepSearchResults', function() {
     };
     var test = zillow.getDeepSearchResults(parameters);
 
-    it('should return a json object', function() {
+    it('should return a json object', function(done) {
         expect(typeof test.then(function(result) {
             result.to.equal('object');
+            done();
         }));
     });
 
-    it('should return a success message', function() {
+    it('should return a success message', function(done) {
         expect(test.then(function(result) {
             result['message']['text'].to.equal
             ('Request successfully processed');
+            done();
         }));
         expect(test.then(function(result) {
-            result['message']['code'].to.equal(0);
+            result[0]['message']['code'].to.equal(0);
+            done();
         }));
     });
 });
@@ -59,19 +62,53 @@ describe('getDemographics', function() {
     };
     var test = zillow.getDemographics(parameters);
 
-    it('should be a json object', function() {
+    it('should be a json object', function(done) {
         expect(typeof test.then(function(result) {
             result.to.equal('object');
+            done();
         }));
     });
 
-    it('should return a success message', function() {
+    it('should return a success message', function(done) {
         expect(test.then(function(result) {
             result['message']['text'].to.equal
             ('Request successfully processed');
+            done();
         }));
         expect(test.then(function(result) {
             result['message']['code'].to.equal(0);
+            done();
         }));
     });
+});
+
+describe('callApi', function() {
+  this.timeout(10000);
+  var zillow = new Zillow(zwsid);
+
+  describe('getSearchResults', function() {
+    var parameters = {
+      address: params.address,
+      citystatezip: params.city + ', ' + params.state + ' ' + params.zip
+    };
+
+    var test = zillow.callApi('GetSearchResults', parameters);
+
+    it('should be a json object', function() {
+      expect(typeof test.then(function(result) {
+        result.to.equal('object');
+      }));
+    });
+
+    it('should return a success message', function(done) {
+      expect(test.then(function(result) {
+        console.log(result);
+        result['message']['text'].to.equal('Request successfully processed');
+        done();
+      }));
+      expect(test.then(function(result) {
+        result['message'][0]['code'].to.equal(0);
+      }));
+    });
+  });
 });

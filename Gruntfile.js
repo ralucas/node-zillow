@@ -17,7 +17,8 @@ module.exports = function (grunt) {
       test: {
         options: {
           reporter: 'spec',
-          require: 'coverage/blanket'
+          require: 'coverage/blanket',
+          grep: grunt.option('grep')
         },
         src: ['test/*.js']
       },
