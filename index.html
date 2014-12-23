@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Node-zillow by ralucas</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Node-zillow</h1>
+        <p>Node wrapper for Zillow API</p>
+
+        <p class="view"><a href="https://github.com/ralucas/node-zillow">View the Project on GitHub <small>ralucas/node-zillow</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ralucas/node-zillow/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ralucas/node-zillow/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ralucas/node-zillow">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="node-zillow-" class="anchor" href="#node-zillow-" aria-hidden="true"><span class="octicon octicon-link"></span></a>node-zillow <a href="http://travis-ci.org/ralucas/node-zillow"><img src="https://secure.travis-ci.org/ralucas/node-zillow.png?branch=master" alt="Build Status"></a>
+</h1>
+
+<p>Node wrapper for the Zillow API</p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>Install the module with: <code>npm install node-zillow</code></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Zillow <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>node-zillow<span class="pl-pds">'</span></span>);
+
+<span class="pl-c">//Instantiate</span>
+<span class="pl-s">var</span> zillow <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Zillow</span>(<span class="pl-s1"><span class="pl-pds">'</span>your zws-id<span class="pl-pds">'</span></span>);</pre></div>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<h3>
+<a id="methods" class="anchor" href="#methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods</h3>
+
+<div class="highlight highlight-js"><pre>getDeepSearchResults  
+<span class="pl-k">-</span> takes params hash
+{
+  address<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>address<span class="pl-pds">'</span></span>,
+  city<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>city<span class="pl-pds">'</span></span>,
+  state<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>state<span class="pl-pds">'</span></span>,
+  zip<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>zip<span class="pl-pds">'</span></span>,
+  rentzestimate<span class="pl-k">:</span> boolean <span class="pl-c">//this is optional</span>
+}
+<span class="pl-k">-</span> Returns a promise <span class="pl-k">with</span> the result</pre></div>
+
+<div class="highlight highlight-js"><pre>getDemographics
+<span class="pl-k">-</span> takes params hash
+{
+  address<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>address<span class="pl-pds">'</span></span>,
+  city<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>city<span class="pl-pds">'</span></span>,
+  state<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>state<span class="pl-pds">'</span></span>,
+  zip<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>zip<span class="pl-pds">'</span></span>
+}
+<span class="pl-k">-</span> Returns a promise <span class="pl-k">with</span> the result</pre></div>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<div class="highlight highlight-js"><pre>Needs to be resolved from a promise (recommend Q library)<span class="pl-k">:</span>
+
+<span class="pl-s">var</span> getResult <span class="pl-k">=</span> getDeepSearchResults({params});
+getResult.then(<span class="pl-st">function</span>(<span class="pl-vpf">result</span>) {
+  <span class="pl-k">return</span> result; <span class="pl-c">//here's your result, so you can do something here</span>
+});</pre></div>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using <a href="http://gruntjs.com/">Grunt</a>.</p>
+
+<h2>
+<a id="release-history" class="anchor" href="#release-history" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release History</h2>
+
+<p><em>(Nothing yet)</em></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright (c) 2014 Richard Lucas. Licensed under the MIT license.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ralucas">ralucas</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-50082017-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
