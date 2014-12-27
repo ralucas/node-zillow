@@ -17,7 +17,7 @@ var zillow = new Zillow('your zws-id');
 ### Methods
 
 ```js
-getDeepSearchResults  
+getDeepSearchResults
 - takes params hash
 {
   address: 'address',
@@ -43,6 +43,8 @@ getDemographics
 
 ## Examples
 
+Zillow.getDeepSearchResults()
+
 ```js
 Needs to be resolved from a promise (recommend Q library):
 
@@ -50,6 +52,51 @@ var getResult = getDeepSearchResults({params});
 getResult.then(function(result) {
   return result; //here's your result, so you can do something here
 });
+```
+
+Zillow.getUpdatedPropertyDetails()
+
+```js
+var Zillow  = require('node-zillow')
+
+// To run: `<ZWSID> node example_updatedPropertyDetails.js`
+var zwsid = process.env.ZWSID;
+
+var zillow = new Zillow(zwsid)
+
+var params = {
+  address: "2512 Mapleton Ave.",
+  city: 'Boulder',
+  state: 'CO',
+  zip: '80304'
+}
+
+// getDeepSearchResults() returns zpid, which is passed into getUpdatedPropertyDetails()
+var deepResults = zillow.getDeepSearchResults(params)
+    .then(function(result) {
+      var zpid = result.response[0].results[0].result[0].zpid[0]
+      return zillow.getUpdatedPropertyDetails(zpid)
+    })
+    .then(function(result) {
+      if (result.message[0].code === '502') return {}
+      return result.response[0]
+    })
+
+```
+
+Zillow.getDemographics()
+
+```js
+var Zillow  = require('node-zillow')
+
+var zwsid = process.env.ZWSID
+var zillow = new Zillow(zwsid)
+
+zillow.getDemographics({zip: '80301'})
+  .then(function(data) {
+    var results = data.response[0].results[0].result[0]
+    return results;
+  })
 ```
 
 ## Contributing
