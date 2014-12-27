@@ -30,6 +30,14 @@ getDeepSearchResults
 ```
 
 ```js
+getUpdatedPropertyDetails
+- takes zpid (Zillow property id) obtained from the getDeepSearchResults request
+Pass in as a number or a string
+
+- Returns a promise with the result
+```
+
+```js
 getDemographics
 - takes params hash
 {
@@ -59,7 +67,7 @@ Zillow.getUpdatedPropertyDetails()
 ```js
 var Zillow  = require('node-zillow')
 
-// To run: `<ZWSID> node example_updatedPropertyDetails.js`
+// To run: `ZWSID=<ZWSID> node example_updatedPropertyDetails.js`
 var zwsid = process.env.ZWSID;
 
 var zillow = new Zillow(zwsid)
