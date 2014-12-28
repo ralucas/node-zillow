@@ -12,6 +12,8 @@ var Zillow = require('node-zillow');
 var zillow = new Zillow('your zws-id');
 ```
 
+`var your-zws-id = process.env.ZWSID` is the recommended way
+
 ## Documentation
 
 ### Methods
@@ -19,7 +21,7 @@ var zillow = new Zillow('your zws-id');
 ```js
 callApi
 - Convenience method for the entire zillow api
-- takes the name of the api call (i.e. GetSearchResults) -- refer to the [Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm) or the `lib/api_list.json`
+- takes the name of the api call (i.e. GetSearchResults) -- refer to the [Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm), the `lib/api_list.json`, or see below
 - Returns a promise with the result
 ```
 
@@ -54,6 +56,22 @@ getDemographics
   zip: 'zip'
 }
 - Returns a promise with the result
+```
+
+```js
+Following API Methods supported:
+* GetDeepSearchResults  
+* GetUpdatedPropertyDetails  
+* GetDeepComps  
+* GetRateSummary  
+* GetMonthlyPayments  
+* GetDemographics  
+* GetRegionChildren  
+* GetRegionChart  
+* GetSearchResults  
+* GetZestimate  
+* GetChart  
+* GetComps  
 ```
 
 ## Examples
@@ -115,10 +133,10 @@ zillow.getDemographics({zip: '80301'})
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+This module uses promises via the Q library.  Please continue to use promises. And in lieu of any further formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+
 
 ## License
 Copyright (c) 2014 Richard Lucas. Licensed under the MIT license.

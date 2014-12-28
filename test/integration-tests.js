@@ -129,6 +129,7 @@ describe('getDemographics', function() {
 
   it('should return a success message', function(done) {
     test.then(function(result) {
+      console.log(result['message'][0]['text'][0]);
       expect(result['message'][0]['text'][0]).to.equal('Request successfully processed');
       done();
     });
@@ -147,13 +148,13 @@ describe('callApi', function() {
 
   var zillow = new Zillow(zwsid);
 
-  describe('GetSearchResults', function() {
+  describe('GetDeepComps', function() {
     var parameters = {
-      address: params.address,
-      citystatezip: params.city + ', ' + params.state + ' ' + params.zip
+      zpid: 13177031,
+      count: 10
     };
 
-    var test = zillow.callApi('GetSearchResults', parameters);
+    var test = zillow.callApi('GetDeepComps', parameters);
 
     this.timeout(5000);
 
