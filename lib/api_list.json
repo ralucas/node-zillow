@@ -1,0 +1,38 @@
+{
+  "GetDeepSearchResults": {
+    "resultTag": "Searchresults:searchresults"
+  },
+  "GetUpdatedPropertyDetails": {
+    "resultTag": "UpdatedPropertyDetails:updatedPropertyDetails"
+  },
+  "GetDeepComps": {
+    "resultTag": "Comps:comps"
+  },
+  "GetRateSummary": {
+    "resultTag": "RateSummary:rateSummary"
+  },
+  "GetMonthlyPayments": {
+    "resultTag": "MonthlyPayments:paymentsSummary"
+  },
+  "GetDemographics": {
+    "resultTag": "Demographics:demographics"
+  },
+  "GetRegionChildren": {
+    "resultTag": "RegionChildren:regionchildren"
+  },
+  "GetRegionChart": {
+    "resultTag": "RegionChart:regionchart"
+  },
+  "GetSearchResults": {
+    "resultTag": "SearchResults:searchresults"
+  },
+  "GetZestimate": {
+    "resultTag": "Zestimate:zestimate"
+  },
+  "GetChart": {
+    "resultTag": "Chart:chart"
+  },
+  "GetComps": {
+    "resultTag": "Comps:comps"
+  }
+}

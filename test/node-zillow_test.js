@@ -3,7 +3,8 @@
 var Zillow         = require('../lib/node-zillow.js'),
     mocha          = require('mocha'),
     chai           = require('chai'),
-    expect         = require('chai').expect;
+    expect         = require('chai').expect,
+    sinon          = require('sinon');
 
 
 describe('Zillow', function() {
