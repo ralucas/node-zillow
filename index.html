@@ -39,10 +39,15 @@
 
 <p>Install the module with: <code>npm install node-zillow</code></p>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Zillow <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>node-zillow<span class="pl-pds">'</span></span>);
+<div class="highlight highlight-js"><pre><span class="pl-s">var</span> Zillow <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>node-zillow<span class="pl-pds">'</span></span>);
 
 <span class="pl-c">//Instantiate</span>
 <span class="pl-s">var</span> zillow <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Zillow</span>(<span class="pl-s1"><span class="pl-pds">'</span>your zws-id<span class="pl-pds">'</span></span>);</pre></div>
+
+<p><code>var your-zws-id = process.env.ZWSID</code> is the recommended way</p>
+
+<p><strong>Also be sure to follow the Zillow API terms of use and requirements</strong>
+<a href="http://www.zillow.com/howto/api/APIOverview.htm">Zillow API Docs</a></p>
 
 <h2>
 <a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
@@ -50,7 +55,12 @@
 <h3>
 <a id="methods" class="anchor" href="#methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods</h3>
 
-<div class="highlight highlight-js"><pre>getDeepSearchResults  
+<div class="highlight highlight-js"><pre>callApi
+<span class="pl-k">-</span> Convenience method <span class="pl-k">for</span> the entire zillow api
+<span class="pl-k">-</span> takes the name of the api call (i.e. GetSearchResults) <span class="pl-k">--</span> refer to the [Zillow API Docs](http<span class="pl-k">:</span><span class="pl-c">//www.zillow.com/howto/api/APIOverview.htm), the `lib/api_list.json`, or see below</span>
+<span class="pl-k">-</span> Returns a promise <span class="pl-k">with</span> the result</pre></div>
+
+<div class="highlight highlight-js"><pre>getDeepSearchResults
 <span class="pl-k">-</span> takes params hash
 {
   address<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>address<span class="pl-pds">'</span></span>,
@@ -59,6 +69,12 @@
   zip<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>zip<span class="pl-pds">'</span></span>,
   rentzestimate<span class="pl-k">:</span> boolean <span class="pl-c">//this is optional</span>
 }
+<span class="pl-k">-</span> Returns a promise <span class="pl-k">with</span> the result</pre></div>
+
+<div class="highlight highlight-js"><pre>getUpdatedPropertyDetails
+<span class="pl-k">-</span> takes zpid (Zillow property id) obtained from the getDeepSearchResults request
+Pass <span class="pl-k">in</span> as a number or a string
+
 <span class="pl-k">-</span> Returns a promise <span class="pl-k">with</span> the result</pre></div>
 
 <div class="highlight highlight-js"><pre>getDemographics
@@ -71,8 +87,40 @@
 }
 <span class="pl-k">-</span> Returns a promise <span class="pl-k">with</span> the result</pre></div>
 
+<h4>
+<a id="following-api-methods-supported" class="anchor" href="#following-api-methods-supported" aria-hidden="true"><span class="octicon octicon-link"></span></a>Following API Methods supported:</h4>
+
+<ul>
+<li>GetDeepSearchResults<br>
+</li>
+<li>GetUpdatedPropertyDetails<br>
+</li>
+<li>GetDeepComps<br>
+</li>
+<li>GetRateSummary<br>
+</li>
+<li>GetMonthlyPayments<br>
+</li>
+<li>GetDemographics<br>
+</li>
+<li>GetRegionChildren<br>
+</li>
+<li>GetRegionChart<br>
+</li>
+<li>GetSearchResults<br>
+</li>
+<li>GetZestimate<br>
+</li>
+<li>GetChart<br>
+</li>
+<li>GetComps<br>
+</li>
+</ul>
+
 <h2>
 <a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<p>Zillow.getDeepSearchResults()</p>
 
 <div class="highlight highlight-js"><pre>Needs to be resolved from a promise (recommend Q library)<span class="pl-k">:</span>
 
@@ -81,15 +129,73 @@ getResult.then(<span class="pl-st">function</span>(<span class="pl-vpf">result</
   <span class="pl-k">return</span> result; <span class="pl-c">//here's your result, so you can do something here</span>
 });</pre></div>
 
+<p>Zillow.getUpdatedPropertyDetails()</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-s">var</span> Zillow  <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>node-zillow<span class="pl-pds">'</span></span>)
+
+<span class="pl-c">// To run: `ZWSID=&lt;ZWSID&gt; node example_updatedPropertyDetails.js`</span>
+<span class="pl-s">var</span> zwsid <span class="pl-k">=</span> <span class="pl-sv">process</span>.env.ZWSID;
+
+<span class="pl-s">var</span> zillow <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Zillow</span>(zwsid)
+
+<span class="pl-s">var</span> params <span class="pl-k">=</span> {
+  address<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>2512 Mapleton Ave.<span class="pl-pds">"</span></span>,
+  city<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Boulder<span class="pl-pds">'</span></span>,
+  state<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>CO<span class="pl-pds">'</span></span>,
+  zip<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>80304<span class="pl-pds">'</span></span>
+}
+
+<span class="pl-c">// getDeepSearchResults() returns zpid, which is passed into getUpdatedPropertyDetails()</span>
+<span class="pl-s">var</span> deepResults <span class="pl-k">=</span> zillow.getDeepSearchResults(params)
+    .then(<span class="pl-st">function</span>(<span class="pl-vpf">result</span>) {
+      <span class="pl-s">var</span> zpid <span class="pl-k">=</span> result.response[<span class="pl-c1">0</span>].results[<span class="pl-c1">0</span>].result[<span class="pl-c1">0</span>].zpid[<span class="pl-c1">0</span>]
+      <span class="pl-k">return</span> zillow.getUpdatedPropertyDetails(zpid)
+    })
+    .then(<span class="pl-st">function</span>(<span class="pl-vpf">result</span>) {
+      <span class="pl-k">if</span> (result.message[<span class="pl-c1">0</span>].<span class="pl-sc">code</span> <span class="pl-k">===</span> <span class="pl-s1"><span class="pl-pds">'</span>502<span class="pl-pds">'</span></span>) <span class="pl-k">return</span> {}
+      <span class="pl-k">return</span> result.response[<span class="pl-c1">0</span>]
+    })
+</pre></div>
+
+<p>Zillow.getDemographics()</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-s">var</span> Zillow  <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>node-zillow<span class="pl-pds">'</span></span>)
+
+<span class="pl-s">var</span> zwsid <span class="pl-k">=</span> <span class="pl-sv">process</span>.env.ZWSID
+<span class="pl-s">var</span> zillow <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Zillow</span>(zwsid)
+
+zillow.getDemographics({zip<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>80301<span class="pl-pds">'</span></span>})
+  .then(<span class="pl-st">function</span>(<span class="pl-vpf">data</span>) {
+    <span class="pl-s">var</span> results <span class="pl-k">=</span> data.response[<span class="pl-c1">0</span>].results[<span class="pl-c1">0</span>].result[<span class="pl-c1">0</span>]
+    <span class="pl-k">return</span> results;
+  })</pre></div>
+
+<p>Zillow.callApi()</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-s">var</span> Zillow  <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>node-zillow<span class="pl-pds">'</span></span>)
+
+<span class="pl-s">var</span> zwsid <span class="pl-k">=</span> <span class="pl-sv">process</span>.env.ZWSID
+<span class="pl-s">var</span> zillow <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Zillow</span>(zwsid)
+
+<span class="pl-s">var</span> parameters <span class="pl-k">=</span> {
+  zpid<span class="pl-k">:</span> <span class="pl-c1">1111111</span>
+};
+
+zillow.callApi(<span class="pl-s1"><span class="pl-pds">'</span>GetZestimate<span class="pl-pds">'</span></span>, parameters)
+  .then(<span class="pl-st">function</span>(<span class="pl-vpf">data</span>) {
+    <span class="pl-s">var</span> results <span class="pl-k">=</span> data.response[<span class="pl-c1">0</span>].results[<span class="pl-c1">0</span>].result[<span class="pl-c1">0</span>]
+    <span class="pl-k">return</span> results;
+  })</pre></div>
+
 <h2>
 <a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
-<p>In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using <a href="http://gruntjs.com/">Grunt</a>.</p>
+<p>This module uses promises via the Q library.  Please continue to use promises. And in lieu of any further formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using <a href="http://gruntjs.com/">Grunt</a>.</p>
 
 <h2>
 <a id="release-history" class="anchor" href="#release-history" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release History</h2>
 
-<p><em>(Nothing yet)</em></p>
+<p>v0.0.3 - Includes the following methods: callApi, getUpdatedPropertyDetails, getDeepSearchResults, getDemographics</p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
