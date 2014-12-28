@@ -113,8 +113,6 @@ describe('getDemographics', function() {
   var zillow = new Zillow(zwsid);
   
   var parameters = {
-    city: params.city,
-    state: params.state,
     zip: params.zip
   };
 
@@ -129,7 +127,6 @@ describe('getDemographics', function() {
 
   it('should return a success message', function(done) {
     test.then(function(result) {
-      console.log(result['message'][0]['text'][0]);
       expect(result['message'][0]['text'][0]).to.equal('Request successfully processed');
       done();
     });

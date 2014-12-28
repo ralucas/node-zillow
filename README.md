@@ -5,7 +5,7 @@ Node wrapper for the Zillow API
 ## Getting Started
 Install the module with: `npm install node-zillow`
 
-```javascript
+```js
 var Zillow = require('node-zillow');
 
 //Instantiate
@@ -13,6 +13,9 @@ var zillow = new Zillow('your zws-id');
 ```
 
 `var your-zws-id = process.env.ZWSID` is the recommended way
+
+__Also be sure to follow the Zillow API terms of use and requirements__
+[Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm)
 
 ## Documentation
 
