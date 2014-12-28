@@ -133,6 +133,25 @@ zillow.getDemographics({zip: '80301'})
   })
 ```
 
+Zillow.callApi()
+
+```js
+var Zillow  = require('node-zillow')
+
+var zwsid = process.env.ZWSID
+var zillow = new Zillow(zwsid)
+
+var parameters = {
+  zpid: 1111111
+};
+
+zillow.callApi('GetZestimate', parameters)
+  .then(function(data) {
+    var results = data.response[0].results[0].result[0]
+    return results;
+  })
+```
+
 ## Contributing
 This module uses promises via the Q library.  Please continue to use promises. And in lieu of any further formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
