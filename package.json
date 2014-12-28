@@ -1,6 +1,6 @@
 {
   "name": "node-zillow",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/node-zillow.js",
   "description": "Node wrapper for the Zillow API",
   "homepage": "http://github.com/ralucas/node-zillow",
