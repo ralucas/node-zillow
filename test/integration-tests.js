@@ -1,13 +1,17 @@
 'use strict';
 
 var Zillow         = require('../lib/node-zillow.js'),
-    mocha          = require('mocha'),
     chai           = require('chai'),
     expect         = require('chai').expect,
-    assert         = require('chai').assert,
+    chaiAsPromised = require('chai-as-promised'),
     sinon          = require('sinon'),
     fake           = false,
     params;
+
+chai.use(chaiAsPromised);
+
+var dotenv = require('dotenv');
+dotenv.load();
 
 try {
   params = require('../testing.json');
@@ -24,66 +28,60 @@ try {
 var zwsid = process.env.ZWSID;
 
 describe('getDeepSearchResults', function() {
-    var zillow = new Zillow(zwsid);
-    var parameters = {
-        address: params.address,
-        city: params.city,
-        state: params.state,
-        zip: params.zip
-    };
-    var test = zillow.getDeepSearchResults(parameters);
+  var zillow = new Zillow(zwsid);
+  var parameters = {
+    address: params.address,
+    city: params.city,
+    state: params.state,
+    zip: params.zip
+  };
+  var test = zillow.getDeepSearchResults(parameters);
 
-    it('should return a json object', function(done) {
-        expect(typeof test.then(function(result) {
-            result.to.equal('object');
-            done();
-        }));
-    });
+  it('should return a json object', function() {
+    return expect(test).to.eventually.be.an('object');
+  });
 
-    it('should return a success message', function(done) {
-        expect(test.then(function(result) {
-            result['message']['text'].to.equal
-            ('Request successfully processed');
-            done();
-        }));
-        expect(test.then(function(result) {
-            result[0]['message']['code'].to.equal(0);
-            done();
-        }));
-    });
+  it('should return a success message', function(done) {
+    expect(test.then(function(result) {
+      console.log('res', result)
+      result['message'][0]['text'].to.equal('Request successfully processed');
+      done();
+    }));
+    expect(test.then(function(result) {
+      result['message'][0]['code'].to.equal(0);
+      done();
+    }));
+  });
 });
 
 describe('getDemographics', function() {
-    var zillow = new Zillow(zwsid);
-    var parameters = {
-        city: params.city,
-        state: params.state,
-        zip: params.zip
-    };
-    var test = zillow.getDemographics(parameters);
+  var zillow = new Zillow(zwsid);
+  var parameters = {
+    city: params.city,
+    state: params.state,
+    zip: params.zip
+  };
+  var test = zillow.getDemographics(parameters);
 
-    it('should be a json object', function(done) {
-        expect(typeof test.then(function(result) {
-            result.to.equal('object');
-            done();
-        }));
-    });
+  it('should be a json object', function(done) {
+    return expect(test).to.eventually.be.an('object');
+  });
 
-    it('should return a success message', function(done) {
-        expect(test.then(function(result) {
-            result['message']['text'].to.equal
-            ('Request successfully processed');
-            done();
-        }));
-        expect(test.then(function(result) {
-            result['message']['code'].to.equal(0);
-            done();
-        }));
-    });
+  it('should return a success message', function(done) {
+    expect(test.then(function(result) {
+      console.log('res2', result);
+      result['message'][0]['text'].to.equal('Request successfully processed');
+        done();
+    }));
+    expect(test.then(function(result) {
+      result['message'][0]['code'].to.equal(0);
+      done();
+    }));
+  });
 });
 
 describe('callApi', function() {
-  this.timeout(10000);
+
   var zillow = new Zillow(zwsid);
 
   describe('getSearchResults', function() {
@@ -94,16 +92,14 @@ describe('callApi', function() {
 
     var test = zillow.callApi('GetSearchResults', parameters);
 
-    it('should be a json object', function() {
-      expect(typeof test.then(function(result) {
-        result.to.equal('object');
-      }));
+    it('should be a json object', function(done) {
+      return expect(test).to.eventually.be.an('object');
     });
 
     it('should return a success message', function(done) {
       expect(test.then(function(result) {
-        console.log(result);
-        result['message']['text'].to.equal('Request successfully processed');
+        console.log(result['message']);
+        result['message'][0]['text'].to.equal('Request successfully processed');
         done();
       }));
       expect(test.then(function(result) {
