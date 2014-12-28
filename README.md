@@ -61,8 +61,7 @@ getDemographics
 - Returns a promise with the result
 ```
 
-```js
-Following API Methods supported:
+#### Following API Methods supported:
 * GetDeepSearchResults  
 * GetUpdatedPropertyDetails  
 * GetDeepComps  
@@ -75,7 +74,6 @@ Following API Methods supported:
 * GetZestimate  
 * GetChart  
 * GetComps  
-```
 
 ## Examples
 
@@ -139,7 +137,7 @@ zillow.getDemographics({zip: '80301'})
 This module uses promises via the Q library.  Please continue to use promises. And in lieu of any further formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-
+v0.0.3 - Includes the following methods: callApi, getUpdatedPropertyDetails, getDeepSearchResults, getDemographics
 
 ## License
 Copyright (c) 2014 Richard Lucas. Licensed under the MIT license.
