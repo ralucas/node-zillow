@@ -155,6 +155,11 @@ zillow.callApi('GetZestimate', parameters)
 ## Contributing
 This module uses promises via the Q library.  Please continue to use promises. And in lieu of any further formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
+## Contributors
+
+* [Jeff Friesen](https://github.com/jefffriesen)
+* [Richard Lucas](https://github.com/ralucas)
+
 ## Release History
 v0.0.3 - Includes the following methods: callApi, getUpdatedPropertyDetails, getDeepSearchResults, getDemographics
 
