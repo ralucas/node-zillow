@@ -9,9 +9,11 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
     bump: {
-      createTag: true,
-      push: true,
-      pushTo: 'origin'
+      options: {
+        createTag: true,
+        push: true,
+        pushTo: 'origin'
+      }
     },
     mochaTest: {
       test: {
