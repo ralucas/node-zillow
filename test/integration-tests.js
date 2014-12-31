@@ -176,6 +176,32 @@ describe('callApi', function() {
       });
     });
 
+    it('should not throw an error', function(done) {
+      var testError = function() {
+        test;
+      };
+      expect(testError).to.not.throw(Error);
+      done();
+    });
+
+    it('should throw an error without parameters', function(done) {
+      var testError = function() {
+        zillow.callApi('GetDeepComps');
+      };
+      expect(testError).to.throw(Error);
+      done();
+    });
+
+    it('should throw an error with a missing parameter', function(done) {
+      var parameters = {zpid: 111111};
+      var testError = function() {
+        zillow.callApi('GetDeepComps', parameters);
+      };
+      expect(testError).to.throw(Error);
+      expect(testError).to.throw(/Missing parameter/);
+      done();
+    });
+
   });
 
 });
