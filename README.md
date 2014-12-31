@@ -24,7 +24,7 @@ __Also be sure to follow the Zillow API terms of use and requirements__
 ```js
 callApi
 - Convenience method for the entire zillow api
-- takes the name of the api call (i.e. GetSearchResults) -- refer to the [Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm), the `lib/api_list.json`, or see below
+- takes the name of the api call (i.e. GetSearchResults) -- refer to the [Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm), the `lib/api-list.js`, or see below
 - Returns a promise with the result
 ```
 
