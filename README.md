@@ -99,7 +99,7 @@ zillow.callApi('GetZestimate', parameters)
   })
 ```
 
-The following API calls are deprecated and will be removed in the 1.0.0 release. Using `callApi()` is the recommended approach and should be able to do everthing that the legacy functions do. If you see problems, PR's are welcome.
+The following API calls are deprecated and will be removed in the 1.0.0 release. Using `callApi()` is the recommended approach and should be able to do everthing that the legacy functions do. If you see problems with `callApi()`, PR's and issues are welcome.
 
 Zillow.getDeepSearchResults()
 
