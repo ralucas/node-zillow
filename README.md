@@ -14,7 +14,7 @@ var zillow = new Zillow('your zws-id');
 
 `var your-zws-id = process.env.ZWSID` is the recommended way
 
-[Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm)
+None of this will make sense without reading the [Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm)
 
 __Also be sure to follow the Zillow API [terms of use](http://www.zillow.com/howto/api/APITerms.htm) and [branding requirements](http://www.zillow.com/howto/api/BrandingRequirements.htm)__
 
@@ -78,8 +78,7 @@ getDemographics
 
 ## Examples
 
-[Example of all API calls through the `callApi()` method](examples/example.js)
-
+Example of all API calls through the `callApi()` method can be found in [examples](examples/example.js)
 
 Zillow.getDeepSearchResults()
 
