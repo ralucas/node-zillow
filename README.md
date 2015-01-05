@@ -14,7 +14,7 @@ var zillow = new Zillow('your zws-id');
 
 `var your-zws-id = process.env.ZWSID` is the recommended way
 
-None of this will make sense without reading the [Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm)
+__None of this will make sense without reading the [Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm)__
 
 __Also be sure to follow the Zillow API [terms of use](http://www.zillow.com/howto/api/APITerms.htm) and [branding requirements](http://www.zillow.com/howto/api/BrandingRequirements.htm)__
 
