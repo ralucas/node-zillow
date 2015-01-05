@@ -80,6 +80,27 @@ getDemographics
 
 Example of all API calls through the `callApi()` method can be found in [examples](examples/example.js)
 
+Zillow.callApi()
+
+```js
+var Zillow  = require('node-zillow')
+
+var zwsid = process.env.ZWSID
+var zillow = new Zillow(zwsid)
+
+var parameters = {
+  zpid: 1111111
+};
+
+zillow.callApi('GetZestimate', parameters)
+  .then(function(data) {
+    var results = data.response[0].results[0].result[0]
+    return results;
+  })
+```
+
+The following API calls are deprecated and will be removed in the 1.0.0 release. Using `callApi()` is the recommended approach and should be able to do everthing that the legacy functions do. If you see problems, PR's are welcome.
+
 Zillow.getDeepSearchResults()
 
 ```js
@@ -130,25 +151,6 @@ var zwsid = process.env.ZWSID
 var zillow = new Zillow(zwsid)
 
 zillow.getDemographics({zip: '80301'})
-  .then(function(data) {
-    var results = data.response[0].results[0].result[0]
-    return results;
-  })
-```
-
-Zillow.callApi()
-
-```js
-var Zillow  = require('node-zillow')
-
-var zwsid = process.env.ZWSID
-var zillow = new Zillow(zwsid)
-
-var parameters = {
-  zpid: 1111111
-};
-
-zillow.callApi('GetZestimate', parameters)
   .then(function(data) {
     var results = data.response[0].results[0].result[0]
     return results;
