@@ -26,6 +26,7 @@
   "devDependencies": {
     "blanket": "^1.1.6",
     "chai": "^1.9.1",
+    "eyes": "^0.1.8",
     "grunt-bump": "0.0.15",
     "grunt-contrib-jshint": "~0.7.0",
     "grunt-contrib-nodeunit": "~0.2.0",

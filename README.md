@@ -14,8 +14,9 @@ var zillow = new Zillow('your zws-id');
 
 `var your-zws-id = process.env.ZWSID` is the recommended way
 
-__Also be sure to follow the Zillow API terms of use and requirements__
-[Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm)
+__None of this will make sense without reading the [Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm)__
+
+__Also be sure to follow the Zillow API [terms of use](http://www.zillow.com/howto/api/APITerms.htm) and [branding requirements](http://www.zillow.com/howto/api/BrandingRequirements.htm)__
 
 ## Documentation
 
@@ -62,20 +63,43 @@ getDemographics
 ```
 
 #### Following API Methods supported:
-* GetDeepSearchResults  
-* GetUpdatedPropertyDetails  
-* GetDeepComps  
-* GetRateSummary  
-* GetMonthlyPayments  
-* GetDemographics  
-* GetRegionChildren  
-* GetRegionChart  
-* GetSearchResults  
-* GetZestimate  
-* GetChart  
-* GetComps  
+* GetDeepSearchResults
+* GetUpdatedPropertyDetails
+* GetDeepComps
+* GetRateSummary
+* GetMonthlyPayments
+* GetDemographics
+* GetRegionChildren
+* GetRegionChart
+* GetSearchResults
+* GetZestimate
+* GetChart
+* GetComps
 
 ## Examples
+
+Example of all API calls through the `callApi()` method can be found in [examples](examples/example.js)
+
+Zillow.callApi()
+
+```js
+var Zillow  = require('node-zillow')
+
+var zwsid = process.env.ZWSID
+var zillow = new Zillow(zwsid)
+
+var parameters = {
+  zpid: 1111111
+};
+
+zillow.callApi('GetZestimate', parameters)
+  .then(function(data) {
+    var results = data.response[0].results[0].result[0]
+    return results;
+  })
+```
+
+The following API calls are deprecated and will be removed in the 1.0.0 release. Using `callApi()` is the recommended approach and should be able to do everthing that the legacy functions do. If you see problems with `callApi()`, PR's and issues are welcome.
 
 Zillow.getDeepSearchResults()
 
@@ -127,25 +151,6 @@ var zwsid = process.env.ZWSID
 var zillow = new Zillow(zwsid)
 
 zillow.getDemographics({zip: '80301'})
-  .then(function(data) {
-    var results = data.response[0].results[0].result[0]
-    return results;
-  })
-```
-
-Zillow.callApi()
-
-```js
-var Zillow  = require('node-zillow')
-
-var zwsid = process.env.ZWSID
-var zillow = new Zillow(zwsid)
-
-var parameters = {
-  zpid: 1111111
-};
-
-zillow.callApi('GetZestimate', parameters)
   .then(function(data) {
     var results = data.response[0].results[0].result[0]
     return results;
