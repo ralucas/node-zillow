@@ -37,3 +37,19 @@ describe('checkParams', function() {
   });
 
 });
+
+describe('toQueryString', function() {
+
+  var params = {
+      test: 'hello'
+    };
+
+  it('should return a string', function() {
+    expect(helpers.toQueryString(params, '12345')).to.be.a('string');
+  });
+
+  it('should contain hello in the string', function() {
+    expect(helpers.toQueryString(params, '12345')).to.contain('hello');
+  });
+
+});

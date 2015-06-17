@@ -16,7 +16,8 @@
   },
   "licenses": [
     {
-      "type": "MIT"
+      "type": "MIT",
+      "url": "https://github.com/ralucas/node-zillow/blob/master/LICENSE-MIT"
     }
   ],
   "keywords": [
