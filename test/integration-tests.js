@@ -201,6 +201,23 @@ describe('callApi', function() {
       expect(testError).to.throw(/Missing parameter/);
       done();
     });
+    
+  });
+
+  describe('GetDeepSearchResults', function() {
+    var parameters = {
+      address: params.address,
+      citystatezip: params.city + ', ' + params.state + ' ' + params.zip
+    };
+
+    it('should return an object', function(done) {
+      this.timeout(5000);
+      zillow.callApi('GetDeepSearchResults', parameters)
+        .then(function(data) {
+          expect(data).to.be.an('object');
+          done();
+        });
+    });
 
   });
 
