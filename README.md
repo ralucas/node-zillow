@@ -82,8 +82,10 @@ This module uses promises via the Q library.  Please continue to use promises. A
 * [Richard Lucas](https://github.com/ralucas)
 
 ## Release History
+* v1.0.0 - Created single method (get), updated response handling, removed all deprecated methods, updated tests
+* v0.0.5 - updates
 * v0.0.4 - Added error-checking and parameter checking
 * v0.0.3 - Includes the following methods: callApi, getUpdatedPropertyDetails, getDeepSearchResults, getDemographics
 
 ## License
-Copyright (c) 2014 Richard Lucas. Licensed under the MIT license.
+Copyright (c) 2016 Richard Lucas. Licensed under the MIT license.
