@@ -25,29 +25,28 @@ describe('getDeepSearchResults', function() {
   var zillow = new Zillow(zwsid);
   var parameters = {
     address: params.address,
-    city: params.city,
-    state: params.state,
-    zip: params.zip
+    citystatezip: params.city + ', ' + params.state + ' ' + params.zip
   };
-  var test = zillow.getDeepSearchResults(parameters);
+  var test = zillow.get('GetDeepSearchResults', parameters);
 
   it('should be a json object', function(done) {
     test.then(function(result) {
       expect(result).to.be.an('object');
+      expect(result).to.include.keys('message', 'request', 'response');
       done();
     });
   });
 
   it('should return a success message', function(done) {
     test.then(function(result) {
-      expect(result['message'][0]['text'][0]).to.equal('Request successfully processed');
+      expect(result['message']['text']).to.equal('Request successfully processed');
       done();
     });
   });
 
   it('should return 0', function(done) {
     test.then(function(result) {
-      expect(result['message'][0]['code'][0]).to.equal('0');
+      expect(result['message']['code']).to.equal('0');
       done();
     });
   });
@@ -59,7 +58,7 @@ describe('getUpdatedPropertyDetails', function() {
   var zillow = new Zillow(zwsid);
 
   // Mork and Mindy's house, no updates (1619 Pine St, Boulder, CO, zpid: 13177031)
-  var failTest = zillow.getUpdatedPropertyDetails(13177031);
+  var failTest = zillow.get('GetUpdatedPropertyDetails', {zpid: 13177031});
 
   it('should return a json object even without updated data', function(done) {
     failTest.then(function(result) {
@@ -70,20 +69,20 @@ describe('getUpdatedPropertyDetails', function() {
 
   it('should return a message telling us there is no updated data', function(done) {
     failTest.then(function(result) {
-      expect(result['message'][0]['text'][0]).to.equal('Error: no updated data is available for this property');
+      expect(result['message']['text']).to.equal('Error: no updated data is available for this property');
       done();
     });
   });
 
   it('should return a 502', function(done) {
     failTest.then(function(result) {
-      expect(result['message'][0]['code'][0]).to.equal('502');
+      expect(result['message']['code']).to.equal('502');
       done();
     });
   });
 
   // House with updates. 2512 Mapleton Ave. Boulder, CO 80304. zpid: 13176378
-  var passTest = zillow.getUpdatedPropertyDetails(13176378);
+  var passTest = zillow.get('GetUpdatedPropertyDetails', {zpid: 13176378});
 
   it('should return a json object', function(done) {
     passTest.then(function(result) {
@@ -94,14 +93,14 @@ describe('getUpdatedPropertyDetails', function() {
 
   it('should return a success message', function(done) {
     passTest.then(function(result) {
-      expect(result['message'][0]['text'][0]).to.equal('Request successfully processed');
+      expect(result['message']['text']).to.equal('Request successfully processed');
       done();
     });
   });
 
   it('should return 0', function(done) {
     passTest.then(function(result) {
-      expect(result['message'][0]['code'][0]).to.equal('0');
+      expect(result['message']['code']).to.equal('0');
       done();
     });
   });
@@ -116,7 +115,7 @@ describe('getDemographics', function() {
     zip: params.zip
   };
 
-  var test = zillow.getDemographics(parameters);
+  var test = zillow.get('GetDemographics', parameters);
 
   it('should be a json object', function(done) {
     test.then(function(result) {
@@ -127,21 +126,21 @@ describe('getDemographics', function() {
 
   it('should return a success message', function(done) {
     test.then(function(result) {
-      expect(result['message'][0]['text'][0]).to.equal('Request successfully processed');
+      expect(result['message']['text']).to.equal('Request successfully processed');
       done();
     });
   });
 
   it('should return 0', function(done) {
     test.then(function(result) {
-      expect(result['message'][0]['code'][0]).to.equal('0');
+      expect(result['message']['code']).to.equal('0');
       done();
     });
   });
 
 });
 
-describe('callApi', function() {
+describe('get', function() {
 
   var zillow = new Zillow(zwsid);
 
@@ -151,7 +150,7 @@ describe('callApi', function() {
       count: 10
     };
 
-    var test = zillow.callApi('GetDeepComps', parameters);
+    var test = zillow.get('GetDeepComps', parameters);
 
     this.timeout(5000);
 
@@ -164,14 +163,14 @@ describe('callApi', function() {
 
     it('should return a success message', function(done) {
       test.then(function(result) {
-        expect(result['message'][0]['text'][0]).to.equal('Request successfully processed');
+        expect(result['message']['text']).to.equal('Request successfully processed');
         done();
       });
     });
 
     it('should return 0', function(done) {
       test.then(function(result) {
-        expect(result['message'][0]['code'][0]).to.equal('0');
+        expect(result['message']['code']).to.equal('0');
         done();
       });
     });
@@ -186,7 +185,7 @@ describe('callApi', function() {
 
     it('should throw an error without parameters', function(done) {
       var testError = function() {
-        zillow.callApi('GetDeepComps');
+        zillow.get('GetDeepComps');
       };
       expect(testError).to.throw(Error);
       done();
@@ -195,7 +194,7 @@ describe('callApi', function() {
     it('should throw an error with a missing parameter', function(done) {
       var parameters = {zpid: 111111};
       var testError = function() {
-        zillow.callApi('GetDeepComps', parameters);
+        zillow.get('GetDeepComps', parameters);
       };
       expect(testError).to.throw(Error);
       expect(testError).to.throw(/Missing parameter/);
@@ -212,7 +211,7 @@ describe('callApi', function() {
 
     it('should return an object', function(done) {
       this.timeout(5000);
-      zillow.callApi('GetDeepSearchResults', parameters)
+      zillow.get('GetDeepSearchResults', parameters)
         .then(function(data) {
           expect(data).to.be.an('object');
           done();

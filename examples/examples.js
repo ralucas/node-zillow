@@ -1,11 +1,9 @@
 // Call with ZWSID=<ZWSID> node examples.js GetZestimate
-
 var Zillow   = require('../lib/node-zillow')
 var _        = require('lodash')
 var params   = require('./parameters')
 var apiNames = _.keys(require('../lib/api-list'))
 var inspect  = require('eyes').inspector({maxLength: 50000})
-
 
 // Make sure we have specified the correct API name in the arguments
 var apiName = process.argv[2]
@@ -39,7 +37,7 @@ var parameters = (function() {
 
 
 // Call the primary API function based on the arguments passed in
-var example = zillow.callApi(apiName, parameters)
+var example = zillow.get(apiName, parameters)
 
 example.then(function(data) {
     inspect(data)

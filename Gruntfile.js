@@ -20,9 +20,10 @@ module.exports = function (grunt) {
         options: {
           reporter: 'spec',
           require: 'coverage/blanket',
-          grep: grunt.option('grep')
+          grep: grunt.option('grep'),
+          bail: true
         },
-        src: ['test/*.js']
+        src: ['test/*_test.js']
       },
       coverage: {
         options: {

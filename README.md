@@ -22,45 +22,12 @@ __Also be sure to follow the Zillow API [terms of use](http://www.zillow.com/how
 
 ### Methods
 
-```js
-callApi
-- Convenience method for the entire zillow api
+`get`
+- Method for the entire zillow api
 - takes the name of the api call (i.e. GetSearchResults) -- refer to the [Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm), the `lib/api-list.js`, or see below
 - Returns a promise with the result
-```
-
-```js
-getDeepSearchResults
-- takes params hash
-{
-  address: 'address',
-  city: 'city',
-  state: 'state',
-  zip: 'zip',
-  rentzestimate: boolean //this is optional
-}
-- Returns a promise with the result
-```
-
-```js
-getUpdatedPropertyDetails
-- takes zpid (Zillow property id) obtained from the getDeepSearchResults request
-Pass in as a number or a string
-
-- Returns a promise with the result
-```
-
-```js
-getDemographics
-- takes params hash
-{
-  address: 'address',
-  city: 'city',
-  state: 'state',
-  zip: 'zip'
-}
-- Returns a promise with the result
-```
+- The eventual returned result is an object with the following properties: `message`, `request`, and sometimes `response`
+- Please Note: `response` property is NOT always included in the zillow api response
 
 #### Following API Methods supported:
 * GetDeepSearchResults
@@ -78,9 +45,7 @@ getDemographics
 
 ## Examples
 
-Example of all API calls through the `callApi()` method can be found in [examples](examples/example.js)
-
-Zillow.callApi()
+Example of all API calls through the `get()` method can be found in [examples](examples/example.js)
 
 ```js
 var Zillow  = require('node-zillow')
@@ -92,69 +57,20 @@ var parameters = {
   zpid: 1111111
 };
 
-zillow.callApi('GetZestimate', parameters)
-  .then(function(data) {
-    var results = data.response[0].results[0].result[0]
+zillow.get('GetZestimate', parameters)
+  .then(function(results) {
     return results;
+    // results here is an object { message: {}, request: {}, response: {}} 
   })
 ```
 
-The following API calls are deprecated and will be removed in the 1.0.0 release. Using `callApi()` is the recommended approach and should be able to do everthing that the legacy functions do. If you see problems with `callApi()`, PR's and issues are welcome.
+The following API calls are deprecated and will be removed in the 1.0.0 release. Using `get()` is the recommended approach and should be able to do everthing that the legacy functions do. If you see problems with `get()`, PR's and issues are welcome.
 
+```js
+Zillow.callApi()
 Zillow.getDeepSearchResults()
-
-```js
-Needs to be resolved from a promise (recommend Q library):
-
-var getResult = getDeepSearchResults({params});
-getResult.then(function(result) {
-  return result; //here's your result, so you can do something here
-});
-```
-
 Zillow.getUpdatedPropertyDetails()
-
-```js
-var Zillow  = require('node-zillow')
-
-// To run: `ZWSID=<ZWSID> node example_updatedPropertyDetails.js`
-var zwsid = process.env.ZWSID;
-
-var zillow = new Zillow(zwsid)
-
-var params = {
-  address: "2512 Mapleton Ave.",
-  city: 'Boulder',
-  state: 'CO',
-  zip: '80304'
-}
-
-// getDeepSearchResults() returns zpid, which is passed into getUpdatedPropertyDetails()
-var deepResults = zillow.getDeepSearchResults(params)
-    .then(function(result) {
-      var zpid = result.response[0].results[0].result[0].zpid[0]
-      return zillow.getUpdatedPropertyDetails(zpid)
-    })
-    .then(function(result) {
-      if (result.message[0].code === '502') return {}
-      return result.response[0]
-    })
-
-```
-
 Zillow.getDemographics()
-
-```js
-var Zillow  = require('node-zillow')
-
-var zwsid = process.env.ZWSID
-var zillow = new Zillow(zwsid)
-
-zillow.getDemographics({zip: '80301'})
-  .then(function(data) {
-    var results = data.response[0].results[0].result[0]
-    return results;
-  })
 ```
 
 ## Contributing
@@ -166,8 +82,10 @@ This module uses promises via the Q library.  Please continue to use promises. A
 * [Richard Lucas](https://github.com/ralucas)
 
 ## Release History
+* v1.0.0 - Created single method (get), updated response handling, removed all deprecated methods, updated tests
+* v0.0.5 - updates
 * v0.0.4 - Added error-checking and parameter checking
 * v0.0.3 - Includes the following methods: callApi, getUpdatedPropertyDetails, getDeepSearchResults, getDemographics
 
 ## License
-Copyright (c) 2014 Richard Lucas. Licensed under the MIT license.
+Copyright (c) 2016 Richard Lucas. Licensed under the MIT license.
