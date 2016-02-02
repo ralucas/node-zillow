@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "lodash": "^4.0.1",
+    "object-assign": "^4.0.1",
     "q": "^1.4.1",
     "request": "^2.69.0",
     "xml2js": "^0.4.16"

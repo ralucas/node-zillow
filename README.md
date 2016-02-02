@@ -9,10 +9,12 @@ Install the module with: `npm install node-zillow`
 var Zillow = require('node-zillow');
 
 //Instantiate
-var zillow = new Zillow('your zws-id');
+var zillow = new Zillow('your zws-id', options);
 ```
-
 `var your-zws-id = process.env.ZWSID` is the recommended way
+
+#### Accepted options
+https - default is `false`
 
 __None of this will make sense without reading the [Zillow API Docs](http://www.zillow.com/howto/api/APIOverview.htm)__
 

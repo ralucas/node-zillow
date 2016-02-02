@@ -18,8 +18,8 @@ module.exports = function (grunt) {
     mochaTest: {
       test: {
         options: {
-          reporter: 'spec',
-          require: 'coverage/blanket',
+          //reporter: 'spec',
+          //require: 'coverage/blanket',
           grep: grunt.option('grep'),
           bail: true
         },
