@@ -42,9 +42,16 @@
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Zillow <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>node-zillow<span class="pl-pds">'</span></span>);
 
 <span class="pl-c">//Instantiate</span>
-<span class="pl-k">var</span> zillow <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Zillow</span>(<span class="pl-s"><span class="pl-pds">'</span>your zws-id<span class="pl-pds">'</span></span>);</pre></div>
+<span class="pl-k">var</span> zillow <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Zillow</span>(<span class="pl-s"><span class="pl-pds">'</span>your zws-id<span class="pl-pds">'</span></span>, options);</pre></div>
 
 <p><code>var your-zws-id = process.env.ZWSID</code> is the recommended way</p>
+
+<h4>
+<a id="accepted-options" class="anchor" href="#accepted-options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Accepted options</h4>
+
+<p>https - default is <code>false</code></p>
+
+<hr>
 
 <p><strong>None of this will make sense without reading the <a href="http://www.zillow.com/howto/api/APIOverview.htm">Zillow API Docs</a></strong></p>
 
@@ -92,7 +99,7 @@
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Zillow  <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>node-zillow<span class="pl-pds">'</span></span>)
 
-<span class="pl-k">var</span> zwsid <span class="pl-k">=</span> <span class="pl-smi">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">ZWSID</span>
+<span class="pl-k">var</span> zwsid <span class="pl-k">=</span> <span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">ZWSID</span>
 <span class="pl-k">var</span> zillow <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Zillow</span>(zwsid)
 
 <span class="pl-k">var</span> parameters <span class="pl-k">=</span> {
@@ -129,6 +136,7 @@
 <a id="release-history" class="anchor" href="#release-history" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Release History</h2>
 
 <ul>
+<li>v1.0.1 - Added protocol option</li>
 <li>v1.0.0 - Created single method (get), updated response handling, removed all deprecated methods, updated tests</li>
 <li>v0.0.5 - updates</li>
 <li>v0.0.4 - Added error-checking and parameter checking</li>
