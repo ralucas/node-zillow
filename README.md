@@ -92,3 +92,6 @@ This module uses promises via the Q library.  Please continue to use promises. A
 
 ## License
 Copyright (c) 2016 Richard Lucas. Licensed under the MIT license.
+
+For testing pruposes, you can visit [RapidAPI](https://rapidapi.com/package/Zillow/functions?utm_source=ZillowGitHub&utm_medium=button)
+
