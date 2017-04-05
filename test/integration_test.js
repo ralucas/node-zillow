@@ -217,7 +217,21 @@ describe('get', function() {
           done();
         });
     });
+  });
 
+  describe('GetZestimate', function() {
+    var zillow = new Zillow(zwsid);
+    var parameters = {
+      zpid: 1111111
+    };
+  
+    it('should return a zestimate', function(done) {
+      zillow.get('GetZestimate', parameters)
+        .then(function(results) {
+          expect(results).to.be.an('object');
+          done();
+        });
+    });
   });
 
 });
