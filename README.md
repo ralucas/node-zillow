@@ -47,7 +47,7 @@ __Also be sure to follow the Zillow API [terms of use](http://www.zillow.com/how
 
 ## Examples
 
-Example of all API calls through the `get()` method can be found in [examples](examples/example.js)
+Example of all API calls through the `get()` method can be found in [examples](https://github.com/ralucas/node-zillow/blob/master/examples/examples.js)
 
 ```js
 var Zillow  = require('node-zillow')
