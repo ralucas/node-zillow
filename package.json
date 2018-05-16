@@ -31,6 +31,7 @@
     "eyes": "^0.1.8",
     "ink-docstrap": "^1.3.2",
     "jsdoc": "^3.5.5",
+    "jshint": "^2.9.5",
     "jshint-stylish": "~2.2.1",
     "mocha": "^5.1.1",
     "mocha-lcov-reporter": "^1.3.0",
@@ -38,10 +39,11 @@
     "sinon": "^5.0.7"
   },
   "scripts": {
-    "test": "./node_modules/.bin/nyc ./node_modules/.bin/mocha",
-    "lint": "./node_modules/.bin/jshint -c .jshintrc ./lib/",
-    "docs": "./node_modules/.bin/jsdoc -c docs/conf.json",
+    "clean": "rm -rf node_modules",
     "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
+    "docs": "./node_modules/.bin/jsdoc -c docs/conf.json",
+    "lint": "./node_modules/.bin/jshint -c .jshintrc ./lib/",
+    "test": "./node_modules/.bin/nyc ./node_modules/.bin/mocha",
     "test:ci": "npm run lint && npm test"
   },
   "dependencies": {
