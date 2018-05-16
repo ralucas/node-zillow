@@ -1,4 +1,4 @@
-# node-zillow [![Build Status](https://secure.travis-ci.org/ralucas/node-zillow.png?branch=master)](http://travis-ci.org/ralucas/node-zillow)
+# node-zillow [![Build Status](https://secure.travis-ci.org/ralucas/node-zillow.png?branch=master)](http://travis-ci.org/ralucas/node-zillow) [![Coverage Status](https://coveralls.io/repos/github/ralucas/node-zillow/badge.svg)](https://coveralls.io/github/ralucas/node-zillow)
 
 Node wrapper for the Zillow API
 
@@ -76,7 +76,7 @@ Zillow.getDemographics()
 ```
 
 ## Contributing
-This module uses promises via the Q library.  Please continue to use promises. And in lieu of any further formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+This module uses promises via the Q library.  Please continue to use promises. And in lieu of any further formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using npm scripts in the `package.json`.
 
 ## Contributors
 
@@ -84,6 +84,7 @@ This module uses promises via the Q library.  Please continue to use promises. A
 * [Richard Lucas](https://github.com/ralucas)
 
 ## Release History
+* v1.1.0 - Updated all dependencies, removed grunt, moved to istanbul, added coveralls, more ci environments
 * v1.0.1 - Added protocol option
 * v1.0.0 - Created single method (get), updated response handling, removed all deprecated methods, updated tests
 * v0.0.5 - updates
@@ -91,4 +92,4 @@ This module uses promises via the Q library.  Please continue to use promises. A
 * v0.0.3 - Includes the following methods: callApi, getUpdatedPropertyDetails, getDeepSearchResults, getDemographics
 
 ## License
-Copyright (c) 2016 Richard Lucas. Licensed under the MIT license.
+Copyright (c) 2014-2018 Richard Lucas. Licensed under the MIT license.

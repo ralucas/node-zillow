@@ -1,11 +1,15 @@
 language: node_js
 node_js:
+- '10'
+- '9'
+- '8'
+- '7'
+- '6'
+- '4'
 - '0.10'
-before_script:
-- npm install -g grunt-cli
-branches:
-  only:
-  - master
+script:
+  - npm run test:ci
+after_success: npm run coverage
 env:
   global:
     secure: kUspbZ9NL409PfkuIe5XVWPLdg8uq2T6VYzgv6pqhGhwKWt8iHqu3OP0TK2EJiROGo1CFDK1qZFedA4R9mQyQVV2vLi2t/+Qvi3xAtZlD+hRvn8lNNOexAxcL+oesjy3KMbXeRuEZI34HCrk3oLRBL6nPpLMnloooGinkXhITdY=

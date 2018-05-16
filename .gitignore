@@ -4,3 +4,5 @@ environment.json
 testing.json
 docs/
 .env
+.coveralls.yml
+.nyc_output
