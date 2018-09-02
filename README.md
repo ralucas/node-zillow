@@ -84,6 +84,7 @@ This module uses promises via the Q library.  Please continue to use promises. A
 * [Richard Lucas](https://github.com/ralucas)
 
 ## Release History
+* v2.0.0 - Updated all dependencies. Remove support for Node.js v0.10.x.
 * v1.1.0 - Updated all dependencies, removed grunt, moved to istanbul, added coveralls, more ci environments
 * v1.0.1 - Added protocol option
 * v1.0.0 - Created single method (get), updated response handling, removed all deprecated methods, updated tests
