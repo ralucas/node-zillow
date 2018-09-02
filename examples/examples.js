@@ -7,7 +7,7 @@ var inspect  = require('eyes').inspector({maxLength: 50000})
 
 // Make sure we have specified the correct API name in the arguments
 var apiName = process.argv[2]
-if (!_.contains(apiNames, apiName)) throw new Error('requires apiName: \n' + apiNames.join(', '))
+if (!_.includes(apiNames, apiName)) throw new Error('requires apiName: \n' + apiNames.join(', '))
 
 
 // Instantiate a zillow object by passing in our own custom Zillow id (zswid):
