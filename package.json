@@ -1,6 +1,6 @@
 {
   "name": "node-zillow",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "main": "lib/node-zillow.js",
   "description": "Node wrapper for the Zillow API",
   "homepage": "http://github.com/ralucas/node-zillow",
@@ -43,8 +43,9 @@
     "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
     "docs": "./node_modules/.bin/jsdoc -c docs/conf.json",
     "lint": "./node_modules/.bin/jshint -c .jshintrc ./lib/",
-    "test": "./node_modules/.bin/nyc ./node_modules/.bin/mocha",
-    "test:ci": "npm run lint && npm test"
+    "test": "./node_modules/.bin/mocha",
+    "test:ci": "npm run lint && npm test",
+    "test:cov": "./node_modules/.bin/nyc ./node_modules/.bin/mocha"
   },
   "dependencies": {
     "lodash": "^4.0.1",
