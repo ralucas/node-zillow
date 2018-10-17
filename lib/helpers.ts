@@ -1,6 +1,7 @@
 import request from "request";
 import q from "q";
 import xml2js from "xml2js";
+import "core-js/es7/object";
 import { DOMParser } from "xmldom";
 import { mapValues, first, isEmpty, keys, each, without, chain } from "lodash";
 

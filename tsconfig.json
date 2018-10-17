@@ -2,7 +2,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "target": "es5",
-    "lib": ["es2018"],
+    "lib": ["es2018", "es2017.object", "dom"],
     "types": ["node"],
     "outDir": "dist",
     "declaration": true,

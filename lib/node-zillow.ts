@@ -1,3 +1,5 @@
+import "core-js/es7/object";
+
 import {
   RequestParams,
   checkParams,
@@ -17,8 +19,6 @@ import apiList from "./api-list";
  * Licensed under the MIT license.
  */
 
-import objectAssign from "object-assign";
-
 /**
  * @class Zillow
  *
@@ -30,7 +30,7 @@ class Zillow {
   options?: RequestParams;
   constructor(id: string, options?: RequestParams) {
     this.id = id;
-    this.options = objectAssign(
+    this.options = Object.assign(
       {
         https: false,
         timeout: 15000
