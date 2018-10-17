@@ -7,3 +7,4 @@ docs/
 .coveralls.yml
 .nyc_output
 /dist
+/coverage

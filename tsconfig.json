@@ -9,12 +9,10 @@
     "declarationDir": "dist",
     "esModuleInterop": true
   },
-  "include": [
-    "index.ts",
-
-    "lib/**/*",
+  "include": ["index.ts", "lib/**/*"],
+  "exclude": [
     "test/mock_data.ts",
-    "test/integration_test.ts"
-  ],
-  "exclude": ["lib/**/*.spec.ts"]
+    "test/integration_test.ts",
+    "lib/**/*.spec.ts"
+  ]
 }

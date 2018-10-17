@@ -64,10 +64,9 @@
     "build": "tsc -p tsconfig.json",
     "lint": "tslint --project tsconfig.json -c tslint.json",
     "prepublish": "yarn build",
-    "test": "mocha -r ts-node/register -p tsconfig.json lib/**/*.spec.ts",
-    "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
-    "docs": "./node_modules/.bin/jsdoc -c docs/conf.json",
-    "test:coverage": "./node_modules/.bin/nyc ./node_modules/.bin/mocha"
+    "test": "nyc mocha -r ts-node/register -p tsconfig.json lib/**/*.spec.ts",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "docs": "jsdoc -c docs/conf.json"
   },
   "dependencies": {
     "lodash": "^4.0.1",
@@ -76,5 +75,28 @@
     "request-promise": "^4.2.2",
     "xml2js": "^0.4.16",
     "xmldom": "^0.1.27"
+  },
+  "nyc": {
+    "include": [
+      "index.ts",
+      "lib/**/*"
+    ],
+    "exclude": [
+      "test/mock_data.ts",
+      "test/integration_test.ts",
+      "lib/**/*.spec.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
   }
 }
