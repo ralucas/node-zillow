@@ -35,7 +35,6 @@ describe("helpers", () => {
   describe("toJson", () => {
     const xml = mockData.mockXml;
     const testResult = helpers.toJson(xml);
-
     it("should return a promise object", () => {
       expect(testResult).to.be.a("object");
     });
@@ -55,6 +54,10 @@ describe("helpers", () => {
           "message",
           "response"
         );
+        // verify extra < that aren't cdata escaped
+        expect(
+          res["SearchResults:searchresults"]["message"][0].text[0]
+        ).to.equal("Request successfully processed<");
         done();
       });
     });

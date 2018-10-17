@@ -1,6 +1,7 @@
 import request from "request";
 import q from "q";
 import xml2js from "xml2js";
+import { DOMParser } from "xmldom";
 import { mapValues, first, isEmpty, keys, each, without, chain } from "lodash";
 
 function flattenProps(obj) {
@@ -16,13 +17,13 @@ export interface RequestParams {
  *
  * @param {string} url
  */
-export function httpRequest(url) {
+export function httpRequest(url: string, timeout?: number) {
   const deferred = q.defer();
-  request(url, (err, response, body) => {
+  request(url, { timeout }, (err, response, body) => {
     if (err) {
       deferred.reject(new Error(err));
     } else if (!err && response.statusCode !== 200) {
-      deferred.reject(new Error(response.statusCode));
+      deferred.reject(new Error(response.statusMessage));
     } else {
       deferred.resolve(body);
     }
@@ -37,13 +38,23 @@ export function httpRequest(url) {
  */
 export function toJson(xml: string) {
   const deferred = q.defer();
-  xml2js.parseString(xml, (err, result) => {
-    if (err) {
-      deferred.reject(new Error(err));
-    } else {
-      deferred.resolve(result);
-    }
-  });
+  try {
+    // parse xml with domparser first to ensure no weird char sequences slip through
+    // https://stackoverflow.com/questions/24877085/invalid-character-entity-parsing-xml
+    // also, turn off warnings/errors being logged.
+    const xmlStringSerialized = new DOMParser({
+      errorHandler: { warning: () => {}, error: () => {} }
+    }).parseFromString(xml, "text/xml");
+    xml2js.parseString(xmlStringSerialized, (err, result) => {
+      if (err) {
+        deferred.reject(new Error(err));
+      } else {
+        deferred.resolve(result);
+      }
+    });
+  } catch (err) {
+    deferred.reject(err);
+  }
   return deferred.promise;
 }
 

@@ -1,6 +1,15 @@
 import nodeZillow from "./node-zillow";
 import { expect } from "chai";
 import "mocha";
+import nock from "nock";
+import {
+  mockGetDeepSearchResults,
+  mockGetUpdatedPropertyDetailsNoUpdates,
+  mockGetUpdatedPropertyDetailsUpdates,
+  mockGetDemographicData,
+  mockGetDeepComps,
+  mockGetZestimate
+} from "../test/mock_data";
 
 describe("Zillow", () => {
   describe("constructor", () => {
@@ -31,6 +40,11 @@ describe("Zillow", () => {
       address: params.address,
       citystatezip: `${params.city}, ${params.state} ${params.zip}`
     };
+
+    nock("http://www.zillow.com")
+      .get(/GetDeepSearchResults.htm/)
+      .reply(200, mockGetDeepSearchResults);
+
     const test = zillow.get("GetDeepSearchResults", parameters);
 
     it("should be a json object", done => {
@@ -61,6 +75,10 @@ describe("Zillow", () => {
   describe("getUpdatedPropertyDetails", () => {
     const zillow = new nodeZillow(zwsid);
 
+    nock("http://www.zillow.com")
+      .get(/GetUpdatedPropertyDetails.htm/)
+      .reply(200, mockGetUpdatedPropertyDetailsNoUpdates);
+
     // Mork and Mindy's house, no updates (1619 Pine St, Boulder, CO, zpid: 13177031)
     const failTest = zillow.get("GetUpdatedPropertyDetails", {
       zpid: 13177031
@@ -75,7 +93,7 @@ describe("Zillow", () => {
 
     it("should return a message telling us there is no updated data", done => {
       failTest.then(result => {
-        expect(result["message"]["text"]).to.equal(
+        expect(result["message"]["text"]).to.contain(
           "Error: no updated data is available for this property"
         );
         done();
@@ -88,6 +106,10 @@ describe("Zillow", () => {
         done();
       });
     });
+
+    nock("http://www.zillow.com")
+      .get(/GetUpdatedPropertyDetails.htm/)
+      .reply(200, mockGetUpdatedPropertyDetailsUpdates);
 
     // House with updates. 2512 Mapleton Ave. Boulder, CO 80304. zpid: 13176378
     const passTest = zillow.get("GetUpdatedPropertyDetails", {
@@ -125,6 +147,10 @@ describe("Zillow", () => {
       zip: params.zip
     };
 
+    nock("http://www.zillow.com")
+      .get(/GetDemographics.htm/)
+      .reply(200, mockGetDemographicData);
+
     const test = zillow.get("GetDemographics", parameters);
 
     it("should be a json object", done => {
@@ -154,15 +180,17 @@ describe("Zillow", () => {
   describe("get", () => {
     const zillow = new nodeZillow(zwsid);
 
-    describe("GetDeepComps", function() {
+    describe("GetDeepComps", () => {
       const parameters = {
         zpid: 13177031,
         count: 10
       };
 
-      const test = zillow.get("GetDeepComps", parameters);
+      nock("http://www.zillow.com")
+        .get(/GetDeepComps.htm/)
+        .reply(200, mockGetDeepComps);
 
-      this.timeout(5000);
+      const test = zillow.get("GetDeepComps", parameters);
 
       it("should be a json object", done => {
         test.then(result => {
@@ -220,7 +248,10 @@ describe("Zillow", () => {
       };
 
       it("should return an object", done => {
-        this.timeout(5000);
+        nock("http://www.zillow.com")
+          .get(/GetDeepSearchResults.htm/)
+          .reply(200, mockGetDeepSearchResults);
+
         zillow.get("GetDeepSearchResults", parameters).then(data => {
           expect(data).to.be.an("object");
           done();
@@ -235,6 +266,9 @@ describe("Zillow", () => {
       };
 
       it("should return a zestimate", done => {
+        nock("http://www.zillow.com")
+          .get(/GetZestimate.htm/)
+          .reply(200, mockGetZestimate);
         zillow.get("GetZestimate", parameters).then(results => {
           expect(results).to.be.an("object");
           done();

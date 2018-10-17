@@ -32,7 +32,8 @@ class Zillow {
     this.id = id;
     this.options = objectAssign(
       {
-        https: false
+        https: false,
+        timeout: 15000
       },
       options
     );
@@ -56,7 +57,7 @@ class Zillow {
     const protocol = this.options.https ? "https" : "http";
     const requestUrl = `${protocol}://www.zillow.com/webservice/${name}.htm?${paramsString}`;
 
-    return httpRequest(requestUrl)
+    return httpRequest(requestUrl, this.options.timeout)
       .then(toJson)
       .then(handleResponse)
       .catch(handleError);
