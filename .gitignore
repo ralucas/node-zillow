@@ -6,3 +6,4 @@ docs/
 .env
 .coveralls.yml
 .nyc_output
+/dist

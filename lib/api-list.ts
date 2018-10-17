@@ -1,4 +1,11 @@
-module.exports = {
+export interface ApiMethodList {
+  [key: string]: ApiMethod;
+}
+export interface ApiMethod {
+  resultTag: string;
+  requiredParams: string[];
+}
+const apiMethods: ApiMethodList = {
   GetDeepSearchResults: {
     resultTag: "SearchResults:searchresults",
     requiredParams: ["address", "citystatezip"]
@@ -48,3 +55,10 @@ module.exports = {
     requiredParams: ["zpid", "count"]
   }
 };
+export default function getMethod(method: string): ApiMethod {
+  const foundMethod = apiMethods[method];
+  if (foundMethod) {
+    return foundMethod;
+  }
+  throw new Error(`Missing definition for method ${method}`);
+}
