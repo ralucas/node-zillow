@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es5",
+    "lib": ["es2018", "es2017.object", "dom"],
+    "types": ["node"],
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist",
+    "esModuleInterop": true
+  },
+  "include": ["index.ts", "lib/**/*"],
+  "exclude": [
+    "test/mock_data.ts",
+    "test/integration_test.ts",
+    "lib/**/*.spec.ts"
+  ]
+}
